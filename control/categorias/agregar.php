@@ -1,13 +1,11 @@
 <?php
-require_once '../../clases/Propietario.php';
+require_once '../../clases/Categoria.php';
 require_once '../../clases/Conexion.php';
 
-$nombreProp = $_POST['nombreProp'];
-$apellidoProp = $_POST['apellidoProp'];
-$telefonoProp = $_POST['telefonoProp'];
+$descripcion = $_POST['descripcion'];
+$estado = $_POST['estado'];
 
-
-$datos = array($nombreProp,$apellidoProp,$telefonoProp);
-$obj = new Propietario();
+$datos = array($descripcion, $estado);
+$obj = new Categoria();
 echo $obj->save($datos);
-header('location: ../../vista/propietarios/listarpropietarios.php');
+header('location: ../../vista/inventario.php');

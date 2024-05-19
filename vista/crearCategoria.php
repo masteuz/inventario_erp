@@ -95,11 +95,7 @@ $conexion = $c->conectar();
     <body>
         <div class="container">
             <h2>Ingreso de Categoría</h2>
-            <form action="control/categoria/categoria.php" method="post">
-                <div class="form-group">
-                    <label for="id_categoria">ID Categoría</label>
-                    <input type="text" id="id_categoria" name="id_categoria" required>
-                </div>
+            <form action="../control/categorias/agregar.php" method="post">
                 <div class="form-group">
                     <label for="descripcion">Descripción</label>
                     <input type="text" id="descripcion" name="descripcion" required>
