@@ -1,23 +1,22 @@
-<div id="preloader" class="preloader"></div>
+<div id="" class=""></div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid" style="padding-left: 25px;">
-    <a class="navbar-brand" href="../usuario/admin.php">
-      <img src="../../img/logo-topo.png" alt="Logo" width="100px">
-    </a>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 50px;">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../clientes/listarClientes.php"><i class="bx bx-group"></i> Clientes</a>
+          <a class="nav-link active" aria-current="page" href="../inventario.php"><i class="bx bx-group"></i> Inventario</a>
         </li>
         <li class="nav-item">
           <div class="dropdown">
             <a class="nav-link active dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="bx bx-home"></i> Inmuebles
+              <i class="bx bx-cog"></i> Configuración
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="../inmuebles/listarInmuebles.php">Ver inmuebles</a>
-              <a class="dropdown-item" href="../propietarios/listarpropietarios.php">Ver Propietarios</a>
+              <a class="dropdown-item" aria-current="page" href="../categoria/listarCategoria.php">Categorias</a>
+              <a class="dropdown-item" aria-current="page" href="../deposito/listarDeposito.php">Depositos</a>
+              <a class="dropdown-item" aria-current="page" href="../deposito/listarDeposito.php">Unidades de medida</a>
             </div>
           </div>
         </li>
@@ -51,13 +50,6 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a class="dropdown-item" href="../usuario/editPerfil.php">Mi perfil</a>
-          <?php
-          if (isset($_SESSION['rol']) && $_SESSION['rol'] == 1) {
-          ?>
-            <a class="dropdown-item" href="../usuario/listarUsuario.php">Usuarios</a>
-          <?php
-          }
-          ?>
           <li>
             <hr class="dropdown-divider" />
           </li>
@@ -82,7 +74,8 @@
   .bx-group,
   .bx-home,
   .bxs-user-circle,
-  .bx-file {
-    color: aqua;
+  .bx-file 
+  .bx-cog {
+    color: white;
   }
 </style>
