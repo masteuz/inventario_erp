@@ -7,7 +7,7 @@ class Categoria
         $conexion = $c->conectar();
         $descripcion = $c->test_input($datos[0]);
         $estado  = $c->test_input($datos[1]);
-        
+
         $sql = "insert into categoria (descripcion, estado) values ('$descripcion', $estado)";
         $result = mysqli_query($conexion, $sql);
         return $result;
@@ -18,24 +18,21 @@ class Categoria
         $c = new Conexion();
         $conexion = $c->conectar();
 
-        $categoriaId = $c->test_input($datos[0]);
-        $categoriaDesc  = $c->test_input($datos[1]);
-        $categoriaValor = $c->test_input($datos[2]);
-        $categoriaFecha = $c->test_input($datos[3]);
-        $categoriaInm = $c->test_input($datos[4]);
+        $id_categoria = $c->test_input($datos[0]);
+        $descripcion  = $c->test_input($datos[1]);
+        $estado = $c->test_input($datos[2]);
 
-        $sql = "UPDATE categorias set categoria_desc='$categoriaDesc', categoria_valor=$categoriaValor, categoria_fecha='$categoriaFecha', inmuebles_inmueble_id=$categoriaInm where categoria_id=$categoriaId";
+        $sql = "UPDATE categoria set descripcion='$descripcion', estado=$estado where id_categoria=$id_categoria";
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
 
-    public function delete($idCategoria)
+    public function delete($id_categoria)
     {
         $c = new Conexion();
         $conexion = $c->conectar();
-        $sql = "delete from categorias where categoria_id = $idCategoria";
+        $sql = "delete from categoria where id_categoria = $id_categoria";
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
 }
-?>
