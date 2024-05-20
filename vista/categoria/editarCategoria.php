@@ -1,15 +1,23 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['id'])) {
-    header('location: ../index.php');
+    header('location: ../../index.php');
 }
 
-require("../clases/Conexion.php");
+
+$id_categoria = $_GET['id_categoria'];
+
+require("../../clases/Conexion.php");
 $c = new Conexion();
 $conexion = $c->conectar();
+$sql = $conexion->query("select * from categoria where id_categoria=$id_categoria");
 
+while ($resultado = $sql->fetch_assoc()) {
+    $id_categoria = $resultado['id_categoria'];
+    $descripcion = $resultado['descripcion'];
+    $estado = $resultado['estado'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +27,8 @@ $conexion = $c->conectar();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear categoria</title>
+
+    <title>Editar categoria</title>
 </head>
 
 <body>
@@ -30,7 +39,7 @@ $conexion = $c->conectar();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Formulario de Ingreso de Categoría</title>
+        <title>Formulario para editar Categoría</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -93,22 +102,26 @@ $conexion = $c->conectar();
     </head>
 
     <body>
+        </div>
         <div class="container">
-            <h2>Ingreso de Categoría</h2>
-            <form action="../control/categorias/agregar.php" method="post">
+            <h2>Editar de Categoría</h2>
+            <form action="../../control/categorias/editar.php" method="post">
+
+                <input type="hidden" name="id_categoria" value="<?php echo $id_categoria ?>">
+
                 <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" id="descripcion" name="descripcion" required>
+                    <input type="text" id="descripcion" name="descripcion" value="<?php echo $descripcion ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="estado">Estado</label>
                     <select id="estado" name="estado" required>
-                        <option value="1">Activo</option>
-                        <option value="0">Inactivo</option>
+                        <option value="1" <?php if ($estado == 1) echo 'selected'; ?>>Activo</option>
+                        <option value="0" <?php if ($estado == 0) echo 'selected'; ?>>Inactivo</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit">Guardar Categoría</button>
+                    <button type="submit">Editar Categoría</button>
                 </div>
             </form>
         </div>
