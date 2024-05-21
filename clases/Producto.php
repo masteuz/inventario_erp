@@ -15,8 +15,9 @@ class Producto
         $id_unidad_medida = $c->test_input($datos[7]);
         $foto = $c->test_input($datos[8]);
         $observacion = $c->test_input($datos[9]);
-        
+
         $sql = "INSERT INTO producto (descripcion, codigo_barra, precio_compra, precio_venta_minimo, precio_venta_maximo, porcentaje_iva, id_categoria, id_unidad_medida, foto, observacion) VALUES ('$descripcion', '$codigo_barra', '$precio_compra', '$precio_venta_minimo', '$precio_venta_maximo', '$porcentaje_iva', '$id_categoria', '$id_unidad_medida', '$foto', '$observacion')";
+        echo $sql;
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
@@ -37,7 +38,7 @@ class Producto
         $id_unidad_medida = $c->test_input($datos[]);
         $foto = $c->test_input($datos[9]);
         $observacion = $c->test_input($datos[10]);
-        
+
         $sql = "UPDATE unidad_de_medida SET descripcion='$descripcion', codigo_barra='$codigo_barra', precio_compra='$precio_compra', precio_venta_minimo='$precio_venta_minimo', precio_venta_maximo='$precio_venta_maximo', porcentaje_iva='$porcentaje_iva', id_categoria='$id_categoria', id_unidad_medida='$id_unidad_medida', foto='$foto', observacion='$observacion' WHERE id_producto='$id'";
         $result = mysqli_query($conexion, $sql);
         return $result;
@@ -47,11 +48,10 @@ class Producto
     {
         $c = new Conexion();
         $conexion = $c->conectar();
-        
+
         $id = $c->test_input($id);
         $sql = "DELETE FROM producto WHERE id_producto='$id'";
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
 }
-?>

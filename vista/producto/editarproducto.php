@@ -127,41 +127,41 @@ $row = mysqli_fetch_assoc($result);
                 <input type="number" id="iva" name="iva" value="<?php echo $row['iva']; ?>" required>
             </div>
             <div class="mb-3">
-                                <label class="form-label">categoria</label>
-                                <select class="form-select" name="categoria">
-                                    <option selected disabled>-- Seleccionar categoria --</option>
-                                    <?php
+                <label class="form-label">categoria</label>
+                <select class="form-select" name="categoria">
+                    <option selected disabled>-- Seleccionar categoria --</option>
+                    <?php
 
 
-                                    $sql = $conexion->query("Select * from categoria");
+                    $sql = $conexion->query("Select * from categoria");
 
-                                    while ($resultado = $sql->fetch_assoc()) {
-                                        echo "<option value='" . $resultado['id_categoria'] . "'>" . $resultado['descripcion'] . " </option>";
-                                    }
+                    while ($resultado = $sql->fetch_assoc()) {
+                        echo "<option value='" . $resultado['id_categoria'] . "'>" . $resultado['descripcion'] . " </option>";
+                    }
 
-                                    ?>
-                                </select>
-             </div>
-                <div class="mb-3">
-                            <label class="form-label">unidad de medida</label>
-                            <select class="form-select" name="id_unidad_medida">
-                                <option selected disabled>-- Seleccionar unidad de medida --</option>
-                                <?php
+                    ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">unidad de medida</label>
+                <select class="form-select" name="id_unidad_medida">
+                    <option selected disabled>-- Seleccionar unidad de medida --</option>
+                    <?php
 
 
-                                    $sql = $conexion->query("Select * from unidad_de_medida");
+                    $sql = $conexion->query("Select * from unidad_de_medida");
 
-                                    while ($resultado = $sql->fetch_assoc()) {
-                                        echo "<option value='" . $resultado['id_unidad_medida'] . "'>" . $resultado['descripcion'] . " </option>";
-                                    }
+                    while ($resultado = $sql->fetch_assoc()) {
+                        echo "<option value='" . $resultado['id_unidad_medida'] . "'>" . $resultado['descripcion'] . " </option>";
+                    }
 
-                                    ?>
-                                </select>
-                            </div>
+                    ?>
+                </select>
+            </div>
             <div class="mb-3">
                 <label class="form-label">Foto:</label>
-                <input class="form-control" type="file" name="imagenInm" required><br>
-            </div>                
+                <input class="form-control" type="file" name="foto" required><br>
+            </div>
             <div class="form-group">
                 <label for="observacion">Observacion</label>
                 <input type="text" id="observacion" name="observacion" value="<?php echo $row['observacion']; ?>" required>
@@ -170,11 +170,11 @@ $row = mysqli_fetch_assoc($result);
                 <button type="submit">Guardar Cambios</button>
             </div>
             <div class="form-group">
-            <a href="listarproducto.php" class="cancelar">Cancelar</a>
+                <a href="listarproducto.php" class="cancelar">Cancelar</a>
             </div>
 
         </form>
-        
+
     </div>
 </body>
 

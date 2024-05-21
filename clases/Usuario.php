@@ -19,7 +19,7 @@ class Usuario
 
             $_SESSION['id'] = $id;
 
-            header('location: ../../vista/inventario.php');
+            header('location: ../../vista/stock/listarStock.php');
         } else {
             header('location: ../../index.php?el=1');
         }

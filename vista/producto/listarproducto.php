@@ -117,6 +117,7 @@ $conexion = $c->conectar();
                     <th>Id_unidad_medida</th>
                     <th>Foto</th>
                     <th>Observacion</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -129,12 +130,13 @@ $conexion = $c->conectar();
                     echo "<td>" . $row['id_producto'] . "</td>";
                     echo "<td>" . $row['descripcion'] . "</td>";
                     echo "<td>" . $row['codigo_barra'] . "</td>";
+                    echo "<td>" . $row['precio_compra'] . "</td>";
                     echo "<td>" . $row['precio_venta_minimo'] . "</td>";
                     echo "<td>" . $row['precio_venta_maximo'] . "</td>";
                     echo "<td>" . $row['porcentaje_iva'] . "</td>";
                     echo "<td>" . $row['id_categoria'] . "</td>";
                     echo "<td>" . $row['id_unidad_medida'] . "</td>";
-                    echo "<td>" . $row['foto'] . "</td>";
+                    echo "<td><img src='../../foto_producto/" . $row['foto'] . "' alt='Imagen' width='100px'></td>";
                     echo "<td>" . $row['observacion'] . "</td>";
                     echo "<td class='actions'>
                             <a class='editar' href='editarproducto.php?id=" . $row['id_producto'] . "'>Editar</a>

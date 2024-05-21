@@ -95,8 +95,8 @@ $conexion = $c->conectar();
 <body>
     <div class="container">
         <h2>Ingresar Producto</h2>
-        <form action="../../control/producto/agregar.php" method="post">
-        <div class="form-group">
+        <form action="../../control/producto/agregar.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <input type="text" id="descripcion" name="descripcion" required>
             </div>
@@ -106,59 +106,59 @@ $conexion = $c->conectar();
             </div>
             <div class="form-group">
                 <label for="precio_compra">Precio de Compra</label>
-                <input type="number" step="0.01" id="compra" name="compra"  required>
+                <input type="number" step="0.01" id="compra" name="compra" required>
             </div>
             <div class="form-group">
                 <label for="precio_venta_minimo">Precio de Venta Minimo</label>
-                <input type="number" id="minimo" name="minimo"  required>
+                <input type="number" id="minimo" name="minimo" required>
             </div>
             <div class="form-group">
                 <label for="precio_venta_maximo">Precio de Venta Maximo</label>
-                <input type="number" id="maximo" name="maximo"  required>
+                <input type="number" id="maximo" name="maximo" required>
             </div>
             <div class="form-group">
                 <label for="porcentaje_iva">Porcentaje de IVA</label>
-                <input type="number" id="iva" name="iva"  required>
+                <input type="number" id="iva" name="iva" required>
             </div>
             <div class="mb-3">
-                                <label class="form-label">categoria</label>
-                                <select class="form-select" name="categoria">
-                                    <option selected disabled>-- Seleccionar categoria --</option>
-                                    <?php
+                <label class="form-label">categoria</label>
+                <select class="form-select" name="categoria">
+                    <option selected disabled>-- Seleccionar categoria --</option>
+                    <?php
 
 
-                                    $sql = $conexion->query("Select * from categoria");
+                    $sql = $conexion->query("Select * from categoria");
 
-                                    while ($resultado = $sql->fetch_assoc()) {
-                                        echo "<option value='" . $resultado['id_categoria'] . "'>" . $resultado['descripcion'] . " </option>";
-                                    }
+                    while ($resultado = $sql->fetch_assoc()) {
+                        echo "<option value='" . $resultado['id_categoria'] . "'>" . $resultado['descripcion'] . " </option>";
+                    }
 
-                                    ?>
-                                </select>
-             </div>
-                <div class="mb-3">
-                            <label class="form-label">unidad de medida</label>
-                            <select class="form-select" name="id_unidad_medida">
-                                <option selected disabled>-- Seleccionar unidad de medida --</option>
-                                <?php
+                    ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">unidad de medida</label>
+                <select class="form-select" name="id_unidad_medida">
+                    <option selected disabled>-- Seleccionar unidad de medida --</option>
+                    <?php
 
 
-                                    $sql = $conexion->query("Select * from unidad_de_medida");
+                    $sql = $conexion->query("Select * from unidad_de_medida");
 
-                                    while ($resultado = $sql->fetch_assoc()) {
-                                        echo "<option value='" . $resultado['id_unidad_medida'] . "'>" . $resultado['descripcion'] . " </option>";
-                                    }
+                    while ($resultado = $sql->fetch_assoc()) {
+                        echo "<option value='" . $resultado['id_unidad_medida'] . "'>" . $resultado['descripcion'] . " </option>";
+                    }
 
-                                    ?>
-                            </select>
-                    </div>
+                    ?>
+                </select>
+            </div>
             <div class="mb-3">
                 <label class="form-label">Foto:</label>
-                <input class="form-control" type="file" name="imagenInm" required><br>
-            </div>                
+                <input class="form-control" type="file" name="foto" required><br>
+            </div>
             <div class="form-group">
                 <label for="observacion">Observacion</label>
-                <input type="text" id="observacion" name="observacion"  required>
+                <input type="text" id="observacion" name="observacion" required>
             </div>
             <div class="form-group">
                 <button type="submit">Guardar Producto</button>

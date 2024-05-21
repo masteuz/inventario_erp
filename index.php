@@ -3,7 +3,7 @@
 session_start();
 
 if (isset($_SESSION['id'])) {
-  header('location: vista/inventario.php');
+  header('location: vista/stock/listarStock.php');
 }
 
 if (isset($_GET['el'])) {
