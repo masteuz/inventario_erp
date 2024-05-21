@@ -146,8 +146,14 @@ try {
                         <td><?php echo htmlspecialchars($deposito['descripcion']); ?></td>
                         <td><?php echo htmlspecialchars($deposito['direccion']); ?></td>
                         <td><?php echo htmlspecialchars($deposito['telefono']); ?></td>
-                        <td><?php echo htmlspecialchars($deposito['estado']); ?></td>
-                        <td><?php echo htmlspecialchars($deposito['id_encargado']); ?></td>
+                        <td><?php echo htmlspecialchars($deposito['estado'] == 1 ? 'Activo' : 'Inactivo'); ?></td>
+                       
+                        <?php $sql = $conexion->query("Select nombre, apellido from funcionario f join persona p on f.id_persona = p.id_persona where id_funcionario =".$deposito['id_encargado']);
+                             $result = mysqli_fetch_row($sql);
+                             //echo $result;
+                        ?>
+                        <td><?php echo htmlspecialchars($result[0]." ".$result[1] ); ?></td>
+                        
                         <td class="action-buttons">
                             <a href="editarDeposito.php?id=<?php echo $deposito['id_deposito']; ?>" class="edit">Editar</a>
                             <a href="../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este depósito?');">Eliminar</a>

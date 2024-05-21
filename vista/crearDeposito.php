@@ -116,9 +116,22 @@ $conexion = $c->conectar();
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="id_encargado">Encargado</label>
-                    <input type="number" id="id_encargado" name="id_encargado" required>
-                </div>
+                          <label class="form-label">Tipo:</label>
+                                <select class="form-select" name="id_encargado">
+                                    <option selected disabled>-- Seleccionar tipo --</option>
+                                    <?php
+
+
+                                    $sql = $conexion->query("Select id_funcionario, nombre, apellido from funcionario f join persona p on f.id_persona = p.id_persona");
+                                   
+                                    while ($resultado = $sql->fetch_assoc()) {
+                                        echo "<option value='" . $resultado['id_funcionario'] . "'>".$resultado['nombre']." ".$resultado['apellido']."</option>";
+                                    }
+
+                                    ?>
+                                </select>
+                            </div>
+                <div class="form-group">
                 <div class="form-group">
                     <button type="submit">Agregar Deposito</button>
                 </div>

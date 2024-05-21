@@ -2,18 +2,8 @@
 require_once '../../clases/Deposito.php';
 require_once '../../clases/Conexion.php';
 
-session_start();
 
 
-if (!isset($_SESSION['id'])) {
-    //echo 'hola';
-    $obj = new Deposito();
-    $obj ->delete($id);
-    header('location: ../../vista/listarDeposito.php');
-
-   
-  // Add exit after header redirection
-}else{
 //$id = $_POST['descripcion'];
 $descripcion = $_POST['descripcion'];
 $direccion = $_POST['direccion'];
@@ -27,4 +17,4 @@ $obj = new Deposito();
 echo $obj->save($datos);
 header('location: ../../vista/listarDeposito.php');
 
-}
+
