@@ -6,7 +6,7 @@ if (!isset($_SESSION['id'])) {
     exit(); // Add exit after header redirection
 }
 
-require("../clases/Conexion.php");
+require("../../clases/Conexion.php");
 $c = new Conexion();
 $conexion = $c->conectar();
 
@@ -148,9 +148,22 @@ try {
                 </select>
             </div>
             <div class="form-group">
-                <label for="id_encargado">Encargado</label>
-                <input type="number" id="id_encargado" name="id_encargado" value="<?php echo htmlspecialchars($deposito['id_encargado']); ?>" required>
-            </div>
+                          <label class="form-label">Encargado:</label>
+                                <select class="form-select" name="id_encargado">
+
+                                    <?php
+
+
+                                    $sql = $conexion->query("Select id_funcionario, nombre, apellido from funcionario f join persona p on f.id_persona = p.id_persona");
+                                   
+                                    while ($resultado = $sql->fetch_assoc()) {
+                                        $selected = ($resultado['id_funcionario'] == $deposito['id_encargado']) ? 'selected' : '';
+                                        echo "<option value='" . $resultado['id_funcionario'] . "' $selected>" . htmlspecialchars($resultado['nombre'] . " " . $resultado['apellido']) . "</option>";
+                                    }
+
+                                    ?>
+                                </select>
+                            </div>
             <div class="form-group">
                 <button type="submit">Actualizar Deposito</button>
             </div>

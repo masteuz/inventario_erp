@@ -7,7 +7,7 @@ $id_deposito = $_GET['id_deposito'];
 
     $obj = new Deposito();
     $obj ->delete($id_deposito);
-    header('location: ../../vista/listarDeposito.php');
+    header('location: ../../vista/deposito/listarDeposito.php');
 
    
   // Add exit after header redirection

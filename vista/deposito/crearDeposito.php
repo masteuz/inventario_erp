@@ -6,7 +6,7 @@ if (!isset($_SESSION['id'])) {
     header('location: ../index.php');
 }
 
-require("../clases/Conexion.php");
+require("../../clases/Conexion.php");
 $c = new Conexion();
 $conexion = $c->conectar();
 
@@ -95,7 +95,7 @@ $conexion = $c->conectar();
     <body>
         <div class="container">
             <h2>Ingreso de Deposito</h2>
-            <form action="../control/deposito/agregar.php" method="post">
+            <form action="../../control/deposito/agregar.php" method="post">
                 <div class="form-group">
                     <label for="descripcion">Descripción</label>
                     <input type="text" id="descripcion" name="descripcion" required>
@@ -116,7 +116,7 @@ $conexion = $c->conectar();
                     </select>
                 </div>
                 <div class="form-group">
-                          <label class="form-label">Tipo:</label>
+                          <label class="form-label">Encargado:</label>
                                 <select class="form-select" name="id_encargado">
                                     <option selected disabled>-- Seleccionar tipo --</option>
                                     <?php

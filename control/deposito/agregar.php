@@ -15,6 +15,6 @@ $id_encargado = $_POST['id_encargado'];
 $datos = array($descripcion,$direccion,$telefono,$estado,$id_encargado);
 $obj = new Deposito();
 echo $obj->save($datos);
-header('location: ../../vista/listarDeposito.php');
+header('location: ../../vista/deposito/listarDeposito.php');
 
 

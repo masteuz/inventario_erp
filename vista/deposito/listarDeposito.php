@@ -6,7 +6,7 @@ if (!isset($_SESSION['id'])) {
     exit(); // Add exit after header redirection
 }
 
-require("../clases/Conexion.php");
+require("../../clases/Conexion.php");
 $c = new Conexion();
 $conexion = $c->conectar();
 
@@ -156,7 +156,7 @@ try {
                         
                         <td class="action-buttons">
                             <a href="editarDeposito.php?id=<?php echo $deposito['id_deposito']; ?>" class="edit">Editar</a>
-                            <a href="../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este depósito?');">Eliminar</a>
+                            <a href="../../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este depósito?');">Eliminar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
