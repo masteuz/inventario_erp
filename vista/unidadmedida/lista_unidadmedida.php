@@ -6,7 +6,7 @@ if (!isset($_SESSION['id'])) {
     header('location: ../index.php');
 }
 
-require("../clases/Conexion.php");
+require("../../clases/Conexion.php");
 $c = new Conexion();
 $conexion = $c->conectar();
 

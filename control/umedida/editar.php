@@ -10,5 +10,5 @@ $datos = array($id, $descripcion, $abreviatura);
 $obj = new Medida();
 $obj->edit($datos);
 
-header('location: ../../vista/lista_unidadmedida.php');
+header('location: ../../vista/unidadmedida/lista_unidadmedida.php');
 ?>
