@@ -6,14 +6,7 @@ if (!isset($_SESSION['id'])) {
     header('location: ../index.php');
 }
 
-require("../clases/Conexion.php");
-$c = new Conexion();
-$conexion = $c->conectar();
-
-$id = $_GET['id'];
-$sql = "SELECT * FROM unidad_de_medida WHERE id_unidad_medida = $id";
-$result = mysqli_query($conexion, $sql);
-$row = mysqli_fetch_assoc($result);
+require("../../clases/Conexion.php");
 
 ?>
 
@@ -23,7 +16,7 @@ $row = mysqli_fetch_assoc($result);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Unidad de Medida</title>
+    <title>Crear Unidad de Medida</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -99,27 +92,22 @@ $row = mysqli_fetch_assoc($result);
 
 <body>
     <div class="container">
-        <h2>Editar Unidad de Medida</h2>
-        <form action="../control/umedida/editar.php" method="post">
-            <input type="hidden" name="id_unidad_medida" value="<?php echo $row['id_unidad_medida']; ?>">
+        <h2>Ingreso de Unidad de Medida</h2>
+        <form action="../control/umedida/agregar.php" method="post">
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
-                <input type="text" id="descripcion" name="descripcion" value="<?php echo $row['descripcion']; ?>" required>
+                <input type="text" id="descripcion" name="descripcion" required>
             </div>
             <div class="form-group">
                 <label for="abreviatura">Abreviatura</label>
-                <input type="text" id="abreviatura" name="abreviatura" value="<?php echo $row['abreviatura']; ?>" required>
+                <input type="text" id="abreviatura" name="abreviatura" required>
             </div>
             <div class="form-group">
-                <button type="submit">Guardar Cambios</button>
+                <button type="submit">Guardar Unidad de Medida</button>
             </div>
-            <div class="form-group">
-            <a href="lista_unidadmedida.php" class="cancelar">Cancelar</a>
-            </div>
-
         </form>
         <div class="form-group">
-            <a href="lista_unidadmedida.php">Cancelar</a>
+            <a href="lista_unidadmedida.php">Ver Lista de Unidades de Medida</a>
         </div>
     </div>
 </body>
