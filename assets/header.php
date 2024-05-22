@@ -6,7 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 50px;">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../inventario.php"><i class="bx bx-group"></i> Inventario</a>
+          <a class="nav-link active" aria-current="page" href="../../vista/stock/listarStock.php"><i class="bx bx-group"></i> Stock</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../../vista/producto/listarproducto.php"><i class="bx bx-group"></i> Producto</a>
         </li>
         <li class="nav-item">
           <div class="dropdown">
@@ -16,30 +19,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" aria-current="page" href="../categoria/listarCategoria.php">Categorias</a>
               <a class="dropdown-item" aria-current="page" href="../deposito/listarDeposito.php">Depositos</a>
-              <a class="dropdown-item" aria-current="page" href="../deposito/listarDeposito.php">Unidades de medida</a>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="dropdown">
-            <a class="nav-link active dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="bx bx-dollar"></i> Finanzas
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="../ingresos/listarIngresos.php">Ver ingresos</a>
-              <a class="dropdown-item" href="../egresos/listarEgresos.php">Ver egresos</a>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="dropdown">
-            <a class="nav-link active dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class='bx bx-file'></i> Informes
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="../informes/informeIngreso.php">Informe de ingresos</a>
-              <a class="dropdown-item" href="../informes/informeEgreso.php">Informe de egresos</a>
-              <a class="dropdown-item" href="#">Informe SEPRELAD</a>
+              <a class="dropdown-item" aria-current="page" href="../unidadmedida/lista_unidadmedida.php">Unidades de medida</a>
             </div>
           </div>
         </li>
@@ -74,8 +54,7 @@
   .bx-group,
   .bx-home,
   .bxs-user-circle,
-  .bx-file 
-  .bx-cog {
+  .bx-file .bx-cog {
     color: white;
   }
 </style>

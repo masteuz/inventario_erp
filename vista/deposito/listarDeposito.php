@@ -10,7 +10,8 @@ require("../../clases/Conexion.php");
 $c = new Conexion();
 $conexion = $c->conectar();
 
-function fetchDepositos($conexion) {
+function fetchDepositos($conexion)
+{
     $sql = "SELECT * FROM deposito";
     $result = $conexion->query($sql);
 
@@ -36,6 +37,19 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Depositos</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../assets/style1.css">
+
+
+    <script defer src="../../assets/js/bootstrap.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="../../assets/js/SWALfunctions.js"></script>
+    <script defer src="../../assets/datatables/stocks.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,11 +78,14 @@ try {
             margin-top: 20px;
         }
 
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid #ccc;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
@@ -81,6 +98,7 @@ try {
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
         .add-button {
             display: flex;
             justify-content: flex-end;
@@ -98,7 +116,7 @@ try {
         .add-button a:hover {
             background-color: #0056b3;
         }
-       
+
         .action-buttons a {
             padding: 5px 10px;
             margin: 0 5px;
@@ -123,6 +141,9 @@ try {
 </head>
 
 <body>
+    <?php
+    include_once '../../assets/header.php';
+    ?>
     <div class="container">
         <h2>Listado de Depositos</h2>
         <div class="add-button">
@@ -147,13 +168,13 @@ try {
                         <td><?php echo htmlspecialchars($deposito['direccion']); ?></td>
                         <td><?php echo htmlspecialchars($deposito['telefono']); ?></td>
                         <td><?php echo htmlspecialchars($deposito['estado'] == 1 ? 'Activo' : 'Inactivo'); ?></td>
-                       
-                        <?php $sql = $conexion->query("Select nombre, apellido from funcionario f join persona p on f.id_persona = p.id_persona where id_funcionario =".$deposito['id_encargado']);
-                             $result = mysqli_fetch_row($sql);
-                             //echo $result;
+
+                        <?php $sql = $conexion->query("Select nombre, apellido from funcionario f join persona p on f.id_persona = p.id_persona where id_funcionario =" . $deposito['id_encargado']);
+                        $result = mysqli_fetch_row($sql);
+                        //echo $result;
                         ?>
-                        <td><?php echo htmlspecialchars($result[0]." ".$result[1] ); ?></td>
-                        
+                        <td><?php echo htmlspecialchars($result[0] . " " . $result[1]); ?></td>
+
                         <td class="action-buttons">
                             <a href="editarDeposito.php?id=<?php echo $deposito['id_deposito']; ?>" class="edit">Editar</a>
                             <a href="../../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este depósito?');">Eliminar</a>

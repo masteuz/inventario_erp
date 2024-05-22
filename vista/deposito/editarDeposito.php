@@ -10,7 +10,8 @@ require("../../clases/Conexion.php");
 $c = new Conexion();
 $conexion = $c->conectar();
 
-function getDepositoById($conexion, $id) {
+function getDepositoById($conexion, $id)
+{
     $sql = "SELECT * FROM deposito WHERE id_deposito = ?";
     $stmt = $conexion->prepare($sql);
     if ($stmt === false) {
@@ -22,7 +23,8 @@ function getDepositoById($conexion, $id) {
     return $result->fetch_assoc();
 }
 
-function updateDeposito($conexion, $id, $descripcion, $direccion, $telefono, $estado, $id_encargado) {
+function updateDeposito($conexion, $id, $descripcion, $direccion, $telefono, $estado, $id_encargado)
+{
     $sql = "UPDATE deposito SET descripcion = ?, direccion = ?, telefono = ?, estado = ?, id_encargado = ? WHERE id_deposito = ?";
     $stmt = $conexion->prepare($sql);
     if ($stmt === false) {
@@ -63,6 +65,19 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Deposito</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../assets/style1.css">
+
+
+    <script defer src="../../assets/js/bootstrap.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="../../assets/js/SWALfunctions.js"></script>
+    <script defer src="../../assets/datatables/stocks.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -125,6 +140,9 @@ try {
 </head>
 
 <body>
+    <?php
+    include_once '../../assets/header.php';
+    ?>
     <div class="container">
         <h2>Editar Deposito</h2>
         <form action="editarDeposito.php?id=<?php echo $id; ?>" method="post">
@@ -148,22 +166,22 @@ try {
                 </select>
             </div>
             <div class="form-group">
-                          <label class="form-label">Encargado:</label>
-                                <select class="form-select" name="id_encargado">
+                <label class="form-label">Encargado:</label>
+                <select class="form-select" name="id_encargado">
 
-                                    <?php
+                    <?php
 
 
-                                    $sql = $conexion->query("Select id_funcionario, nombre, apellido from funcionario f join persona p on f.id_persona = p.id_persona");
-                                   
-                                    while ($resultado = $sql->fetch_assoc()) {
-                                        $selected = ($resultado['id_funcionario'] == $deposito['id_encargado']) ? 'selected' : '';
-                                        echo "<option value='" . $resultado['id_funcionario'] . "' $selected>" . htmlspecialchars($resultado['nombre'] . " " . $resultado['apellido']) . "</option>";
-                                    }
+                    $sql = $conexion->query("Select id_funcionario, nombre, apellido from funcionario f join persona p on f.id_persona = p.id_persona");
 
-                                    ?>
-                                </select>
-                            </div>
+                    while ($resultado = $sql->fetch_assoc()) {
+                        $selected = ($resultado['id_funcionario'] == $deposito['id_encargado']) ? 'selected' : '';
+                        echo "<option value='" . $resultado['id_funcionario'] . "' $selected>" . htmlspecialchars($resultado['nombre'] . " " . $resultado['apellido']) . "</option>";
+                    }
+
+                    ?>
+                </select>
+            </div>
             <div class="form-group">
                 <button type="submit">Actualizar Deposito</button>
             </div>

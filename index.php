@@ -12,48 +12,41 @@ if (isset($_GET['el'])) {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Login</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link href='assets/stylelogin.css' rel='stylesheet'>
+  <link rel="stylesheet" href="assets/stylelogin.css">
 </head>
 
 <body>
-  <div class="box">
-    <div class="container">
-
+  <div class="login-container">
+    <div class="login-box">
+      <h1>SOFTWARE DE GESTION INTEGRADA</h1>
+      <h2>MODULO DE INVENTARIO</h2>
       <form action="control/usuarios/login.php" method="post">
-
+        <div class="error-message">
+          <?php if (isset($el)) { ?>
+            <p>Usuario o contraseña incorrectos!</p>
+          <?php } ?>
+        </div>
         <div class="input-field">
-          <center><input class="input" type="text" id="username" name="username" placeholder="Usuario" required></center>
           <i class="bx bx-user"></i>
+          <input type="text" id="username" name="username" placeholder="Usuario" required>
         </div>
-
         <div class="input-field">
-          <center><input class="input" type="password" id="password" name="password" placeholder="Contraseña" required></center>
           <i class="bx bx-lock-alt"></i>
+          <input type="password" id="password" name="password" placeholder="Contraseña" required>
         </div>
-
         <div class="input-field">
-          <?php
-          if (isset($el)) {
-          ?>
-            <p style="color: white;"> Usuario o contraseña incorrectos!</p>
-          <?php
-          }
-          ?>
+          <input class="submit-btn" type="submit" value="Entrar">
         </div>
-
-        <div class="input-field">
-          <center><input class="submit" type="submit" value="Entrar"></center>
-        </div>
-
       </form>
     </div>
-
+  </div>
 </body>
 
 </html>

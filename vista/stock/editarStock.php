@@ -22,17 +22,6 @@ while ($resultado = $sql->fetch_assoc()) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Editar stock</title>
-</head>
-
 <body>
 
     <!DOCTYPE html>
@@ -42,6 +31,19 @@ while ($resultado = $sql->fetch_assoc()) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Formulario para editar Categoría</title>
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="../../assets/style1.css">
+
+
+        <script defer src="../../assets/js/bootstrap.min.js"></script>
+        <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script defer src="../../assets/js/SWALfunctions.js"></script>
+        <script defer src="../../assets/datatables/stocks.js"></script>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -104,6 +106,9 @@ while ($resultado = $sql->fetch_assoc()) {
     </head>
 
     <body>
+        <?php
+        include_once '../../assets/header.php';
+        ?>
         </div>
         <div class="container">
             <h2>Editar de Categoría</h2>
@@ -180,8 +185,3 @@ while ($resultado = $sql->fetch_assoc()) {
     </body>
 
     </html>
-
-
-</body>
-
-</html>

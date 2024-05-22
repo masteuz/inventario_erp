@@ -78,7 +78,7 @@ $conexion = $c->conectar();
                     <tr>
                         <td><?php echo $resultado['id_categoria'] ?></td>
                         <td><?php echo $resultado['descripcion'] ?></td>
-                        <td><?php echo $resultado['estado'] ?></td>
+                        <td><?php echo htmlspecialchars($resultado['estado'] == 1 ? 'Activo' : 'Inactivo'); ?></td>
                         <td>
                             <a href="editarCategoria.php?id_categoria=<?php echo $resultado['id_categoria'] ?>">
                                 Editar

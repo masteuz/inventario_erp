@@ -24,6 +24,19 @@ $row = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Unidad de Medida</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../assets/style1.css">
+
+
+    <script defer src="../../assets/js/bootstrap.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="../../assets/js/SWALfunctions.js"></script>
+    <script defer src="../../assets/datatables/stocks.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,9 +111,12 @@ $row = mysqli_fetch_assoc($result);
 </head>
 
 <body>
+    <?php
+    include_once '../../assets/header.php';
+    ?>
     <div class="container">
         <h2>Editar Unidad de Medida</h2>
-        <form action="../control/umedida/editar.php" method="post">
+        <form action="../../control/umedida/editar.php" method="post">
             <input type="hidden" name="id_unidad_medida" value="<?php echo $row['id_unidad_medida']; ?>">
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
@@ -114,11 +130,11 @@ $row = mysqli_fetch_assoc($result);
                 <button type="submit">Guardar Cambios</button>
             </div>
             <div class="form-group">
-            <a href="lista_unidadmedida.php" class="cancelar">Cancelar</a>
+                <a href="lista_unidadmedida.php" class="cancelar">Cancelar</a>
             </div>
 
         </form>
-        
+
     </div>
 </body>
 

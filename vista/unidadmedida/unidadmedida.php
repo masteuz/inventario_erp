@@ -17,6 +17,19 @@ require("../../clases/Conexion.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Unidad de Medida</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../assets/style1.css">
+
+
+    <script defer src="../../assets/js/bootstrap.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="../../assets/js/SWALfunctions.js"></script>
+    <script defer src="../../assets/datatables/stocks.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,9 +104,12 @@ require("../../clases/Conexion.php");
 </head>
 
 <body>
+    <?php
+    include_once '../../assets/header.php';
+    ?>
     <div class="container">
         <h2>Ingreso de Unidad de Medida</h2>
-        <form action="../control/umedida/agregar.php" method="post">
+        <form action="../../control/umedida/agregar.php" method="post">
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <input type="text" id="descripcion" name="descripcion" required>

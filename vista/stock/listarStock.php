@@ -73,15 +73,18 @@ $conexion = $c->conectar();
             <tbody class="text-center">
                 <?php
 
-                $sql = $conexion->query("SELECT * FROM stock");
+                $sql = $conexion->query("SELECT stock.id_stock, p.descripcion AS producto_descripcion, d.descripcion AS deposito_descripcion, stock.cantidad, stock.stock_minimo 
+                                        FROM stock
+                                        INNER JOIN producto p ON p.id_producto = stock.id_producto
+                                        INNER JOIN deposito d ON d.id_deposito = stock.id_deposito;");
 
                 while ($resultado = $sql->fetch_assoc()) {
                 ?>
 
                     <tr>
                         <td><?php echo $resultado['id_stock'] ?></td>
-                        <td><?php echo $resultado['id_producto'] ?></td>
-                        <td><?php echo $resultado['id_deposito'] ?></td>
+                        <td><?php echo $resultado['producto_descripcion'] ?></td>
+                        <td><?php echo $resultado['deposito_descripcion'] ?></td>
                         <td><?php echo $resultado['cantidad'] ?></td>
                         <td><?php echo $resultado['stock_minimo'] ?></td>
                         <td>
