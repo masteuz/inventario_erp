@@ -135,11 +135,11 @@ $conexion = $c->conectar();
             </div>
             <div class="form-group">
                 <label for="cantidad">Cantidad</label>
-                <input type="text" id="cantidad" name="cantidad" required>
+                <input type="number" id="cantidad" name="cantidad" required>
             </div>
             <div class="form-group">
                 <label for="stockmin">Stock Minimo</label>
-                <input type="text" id="stockmin" name="stockmin" required>
+                <input type="number" id="stockmin" name="stockmin" required>
             </div>
             <div class="form-group">
                 <button type="submit">Agregar Stock</button>
