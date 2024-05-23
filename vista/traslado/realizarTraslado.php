@@ -161,7 +161,7 @@ $conexion = $c->conectar();
                 <div class="form-group">
                     <label class="form-label">Encargado:</label>
                     <select class="form-select" name="id_encargado" required>
-                        <option selected disabled>-- Seleccionar tipo --</option>
+                        <option selected disabled>-- Seleccionar Encargado --</option>
                         <?php
                         $sql = $conexion->query("SELECT id_funcionario, nombre, apellido FROM funcionario f JOIN persona p ON f.id_persona = p.id_persona");
                         while ($resultado = $sql->fetch_assoc()) {
