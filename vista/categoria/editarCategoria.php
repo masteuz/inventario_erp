@@ -125,7 +125,7 @@ while ($resultado = $sql->fetch_assoc()) {
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit">Guardar Edit</button>
+                <button type="submit">Guardar Edicion</button>
             </div>
         </form>
     </div>
