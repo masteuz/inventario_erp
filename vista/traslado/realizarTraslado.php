@@ -115,12 +115,11 @@ $conexion = $c->conectar();
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
-            </div>
-            <div id="productos">
+
                 <div class="producto">
                     <div class="form-group">
                         <label class="form-label">Producto</label>
-                        <select class="form-select" name="productos[0][id_producto]" required>
+                        <select class="form-select" name="id_producto" required>
                             <option selected disabled>-- Seleccionar producto --</option>
                             <?php
                             $sql = $conexion->query("SELECT * FROM producto");
@@ -132,11 +131,11 @@ $conexion = $c->conectar();
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad</label>
-                        <input type="number" name="productos[0][cantidad]" required>
+                        <input type="number" name="cantidad" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Deposito Origen:</label>
-                        <select class="form-select" name="productos[0][id_deposito_origen]" required>
+                        <select class="form-select" name="id_deposito_origen" required>
                             <option selected disabled>-- Seleccionar deposito --</option>
                             <?php
                             $sql = $conexion->query("SELECT * FROM deposito");
@@ -148,7 +147,7 @@ $conexion = $c->conectar();
                     </div>
                     <div class="form-group">
                         <label class="form-label">Deposito Destino:</label>
-                        <select class="form-select" name="productos[0][id_deposito_destino]" required>
+                        <select class="form-select" name="id_deposito_destino" required>
                             <option selected disabled>-- Seleccionar deposito --</option>
                             <?php
                             $sql = $conexion->query("SELECT * FROM deposito");
@@ -159,77 +158,22 @@ $conexion = $c->conectar();
                         </select>
                     </div>
                 </div>
-            </div>
-            <button type="button" onclick="addProducto()">Añadir Producto</button>
-            <div class="form-group">
-                <label class="form-label">Encargado:</label>
-                <select class="form-select" name="id_encargado" required>
-                    <option selected disabled>-- Seleccionar tipo --</option>
-                    <?php
-                    $sql = $conexion->query("SELECT id_funcionario, nombre, apellido FROM funcionario f JOIN persona p ON f.id_persona = p.id_persona");
-                    while ($resultado = $sql->fetch_assoc()) {
-                        echo "<option value='" . $resultado['id_funcionario'] . "'>" . $resultado['nombre'] . " " . $resultado['apellido'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="submit">Confirmar traslado</button>
-            </div>
+                <div class="form-group">
+                    <label class="form-label">Encargado:</label>
+                    <select class="form-select" name="id_encargado" required>
+                        <option selected disabled>-- Seleccionar tipo --</option>
+                        <?php
+                        $sql = $conexion->query("SELECT id_funcionario, nombre, apellido FROM funcionario f JOIN persona p ON f.id_persona = p.id_persona");
+                        while ($resultado = $sql->fetch_assoc()) {
+                            echo "<option value='" . $resultado['id_funcionario'] . "'>" . $resultado['nombre'] . " " . $resultado['apellido'] . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Confirmar traslado</button>
+                </div>
         </form>
-
-        <script>
-            function addProducto() {
-                const productosDiv = document.getElementById('productos');
-                const productoCount = productosDiv.getElementsByClassName('producto').length;
-                const newProductoHTML = `
-        <div class="producto">
-            <div class="form-group">
-                <label class="form-label">Producto</label>
-                <select class="form-select" name="productos[${productoCount}][id_producto]" required>
-                    <option selected disabled>-- Seleccionar producto --</option>
-                    <?php
-                    $sql = $conexion->query("SELECT * FROM producto");
-                    while ($resultado = $sql->fetch_assoc()) {
-                        echo "<option value='" . $resultado['id_producto'] . "'>" . $resultado['descripcion'] . " </option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="cantidad">Cantidad</label>
-                <input type="number" name="productos[${productoCount}][cantidad]" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Deposito Origen:</label>
-                <select class="form-select" name="productos[${productoCount}][id_deposito_origen]" required>
-                    <option selected disabled>-- Seleccionar deposito --</option>
-                    <?php
-                    $sql = $conexion->query("SELECT * FROM deposito");
-                    while ($resultado = $sql->fetch_assoc()) {
-                        echo "<option value='" . $resultado['id_deposito'] . "'>" . $resultado['descripcion'] . " </option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Deposito Destino:</label>
-                <select class="form-select" name="productos[${productoCount}][id_deposito_destino]" required>
-                    <option selected disabled>-- Seleccionar deposito --</option>
-                    <?php
-                    $sql = $conexion->query("SELECT * FROM deposito");
-                    while ($resultado = $sql->fetch_assoc()) {
-                        echo "<option value='" . $resultado['id_deposito'] . "'>" . $resultado['descripcion'] . " </option>";
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
-    `;
-                productosDiv.insertAdjacentHTML('beforeend', newProductoHTML);
-            }
-        </script>
-
 
     </div>
 </body>

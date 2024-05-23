@@ -31,7 +31,7 @@ $conexion = $c->conectar();
     <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script defer src="../../assets/js/SWALfunctions.js"></script>
-    <script defer src="../../assets/datatables/stocks.js"></script>
+    <script defer src="../../assets/datatables/producto.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,17 +60,6 @@ $conexion = $c->conectar();
             margin: 20px 0;
         }
 
-        table,
-        th,
-        td {
-            border: 1px solid #ccc;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-        }
 
         th {
             background-color: #f2f2f2;
@@ -120,26 +109,33 @@ $conexion = $c->conectar();
     <?php
     include_once '../../assets/header.php';
     ?>
-    <div class="container">
-        <h2>Lista de Productos</h2>
-        <table>
+    <div class="mt-2" style="width: 100%;">
+        <h1 class="ms-3">Lista de Productos</h1>
+        <hr />
+    </div>
+    <div class="w-75 mt-5 mx-auto">
+        <a class="btn btn-secondary mb-3" href="producto.php">
+            <i class='bx bx-plus'></i> Agregar Productos
+        </a>
+        <table id="producto" class="table table-secondary table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Descripción</th>
-                    <th>Codigo_barra</th>
-                    <th>Precio_compra</th>
-                    <th>Precio_venta_minimo</th>
-                    <th>Precio_venta_maximo</th>
-                    <th>Porcentaje_iva</th>
-                    <th>Id_categoria</th>
-                    <th>Id_unidad_medida</th>
-                    <th>Foto</th>
-                    <th>Observacion</th>
-
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Codigo barra</th>
+                    <th class="text-center">Precio compra</th>
+                    <th class="text-center">Precio venta minimo</th>
+                    <th class="text-center">Precio venta maximo</th>
+                    <th class="text-center">IVA (%)</th>
+                    <th class="text-center">Categoria</th>
+                    <th class="text-center">Unidad de medida</th>
+                    <th class="text-center">Foto</th>
+                    <th class="text-center">Observacion</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <?php
                 $sql = "SELECT * FROM producto";
                 $result = mysqli_query($conexion, $sql);
@@ -157,18 +153,17 @@ $conexion = $c->conectar();
                     echo "<td>" . $row['id_unidad_medida'] . "</td>";
                     echo "<td><img src='../../foto_producto/" . $row['foto'] . "' alt='Imagen' width='100px'></td>";
                     echo "<td>" . $row['observacion'] . "</td>";
-                    echo "<td class='actions'>
-                            <a class='editar' href='editarproducto.php?id=" . $row['id_producto'] . "'>Editar</a>
-                            <a class='eliminar' href='../control/producto/eliminar.php?id=" . $row['id_producto'] . "' onclick='return confirm(\"¿Está seguro de que desea eliminar este Producto?\");'>Eliminar</a>
+                    echo "<td class=''>
+                            <a class='editar' href='editarproducto.php?id=" . $row['id_producto'] . "'><i class='bx bx-pencil bx-sm'></i></a>
+                          </td>";
+                    echo "<td class=''>
+                            <a class='eliminar' href='../control/producto/eliminar.php?id=" . $row['id_producto'] . "' onclick='return confirm(\"¿Está seguro de que desea eliminar este Producto?\");'><i class='bx bx-trash bx-sm'></i></a>
                           </td>";
                     echo "</tr>";
                 }
                 ?>
             </tbody>
         </table>
-        <div class="form-group">
-            <a href="producto.php">Volver a Ingreso de Producto</a>
-        </div>
     </div>
 </body>
 

@@ -54,17 +54,19 @@ $conexion = $c->conectar();
         <hr />
     </div>
 
+
     <div class="w-75 mt-5 mx-auto">
+        <a class="btn btn-secondary mb-3" href="crearCategoria.php">
+            <i class='bx bx-plus'></i>Agregar categoria
+        </a>
         <table id="categorias" class="table table-secondary table-hover">
             <thead>
                 <tr>
-                    <th class="text-center">Id</th>
+                    <th class="text-center">ID</th>
                     <th class="text-center">Descripcion</th>
                     <th class="text-center">Estado</th>
                     <th></th>
-                    <th><a href="crearCategoria.php">
-                            Agregar
-                        </a></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -81,12 +83,12 @@ $conexion = $c->conectar();
                         <td><?php echo htmlspecialchars($resultado['estado'] == 1 ? 'Activo' : 'Inactivo'); ?></td>
                         <td>
                             <a href="editarCategoria.php?id_categoria=<?php echo $resultado['id_categoria'] ?>">
-                                Editar
+                                <i class='bx bx-pencil bx-sm'></i>
                             </a>
                         </td>
                         <td>
                             <a href="../../control/categorias/eliminar.php?id_categoria=<?php echo $resultado['id_categoria'] ?>" onclick="return confirmarEliminacion(event)">
-                                Eliminar
+                                <i class='bx bx-trash bx-sm'></i>
                             </a>
                         </td>
                     </tr>

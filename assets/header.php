@@ -6,15 +6,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-left: 50px;">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../vista/stock/listarStock.php"><i class="bx bx-group"></i> Stock</a>
+          <a class="nav-link active" aria-current="page" href="../../vista/stock/listarStock.php"><i class='bx bx-box bx-sm'></i> Stock</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../vista/producto/listarproducto.php"><i class="bx bx-group"></i> Producto</a>
+          <a class="nav-link active" aria-current="page" href="../../vista/producto/listarproducto.php"><i class='bx bx-store-alt bx-sm'></i> Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../../vista/traslado/listarTraslado.php"><i class='bx bx-transfer-alt bx-sm'></i> Traslados</a>
         </li>
         <li class="nav-item">
           <div class="dropdown">
             <a class="nav-link active dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="bx bx-cog"></i> Configuración
+              <i class="bx bx-cog bx-sm"></i> Configuración
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" aria-current="page" href="../categoria/listarCategoria.php">Categorias</a>
@@ -29,11 +32,7 @@
           <i class='bx bxs-user-circle bx-md'></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="../usuario/editPerfil.php">Mi perfil</a>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <a class="dropdown-item" href="../../control/usuarios/salir.php">Salir</a>
+          <a class="dropdown-item" href="../../control/usuarios/salir.php">Cerrar Sesión</a>
         </div>
       </div>
     </div>

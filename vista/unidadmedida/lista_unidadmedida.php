@@ -31,7 +31,7 @@ $conexion = $c->conectar();
     <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script defer src="../../assets/js/SWALfunctions.js"></script>
-    <script defer src="../../assets/datatables/stocks.js"></script>
+    <script defer src="../../assets/datatables/umedida.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,17 +60,7 @@ $conexion = $c->conectar();
             margin: 20px 0;
         }
 
-        table,
-        th,
-        td {
-            border: 1px solid #ccc;
-        }
 
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-        }
 
         th {
             background-color: #f2f2f2;
@@ -120,18 +110,25 @@ $conexion = $c->conectar();
     <?php
     include_once '../../assets/header.php';
     ?>
-    <div class="container">
-        <h2>Lista de Unidades de Medida</h2>
-        <table>
-            <thead>
+    <div class="mt-2" style="width: 100%;">
+        <h1 class="ms-3">Unidades de Medida</h1>
+        <hr />
+    </div>
+    <div class="w-75 mt-5 mx-auto">
+        <a class="btn btn-secondary mb-3" href="unidadmedida.php">
+            <i class='bx bx-plus'></i> Agregar Unidad de Medida
+        </a>
+        <table id="umedida" class="table table-secondary table-hover">
+            <thead class="text-center">
                 <tr>
                     <th>ID</th>
                     <th>Descripción</th>
                     <th>Abreviatura</th>
-                    <th>Acciones</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <?php
                 $sql = "SELECT * FROM unidad_de_medida";
                 $result = mysqli_query($conexion, $sql);
@@ -141,18 +138,17 @@ $conexion = $c->conectar();
                     echo "<td>" . $row['id_unidad_medida'] . "</td>";
                     echo "<td>" . $row['descripcion'] . "</td>";
                     echo "<td>" . $row['abreviatura'] . "</td>";
-                    echo "<td class='actions'>
-                            <a class='editar' href='editar_unidadmedida.php?id=" . $row['id_unidad_medida'] . "'>Editar</a>
-                            <a class='eliminar' href='../control/umedida/eliminar.php?id=" . $row['id_unidad_medida'] . "' onclick='return confirm(\"¿Está seguro de que desea eliminar esta unidad de medida?\");'>Eliminar</a>
+                    echo "<td>
+                            <a class='editar' href='editar_unidadmedida.php?id=" . $row['id_unidad_medida'] . "'><i class='bx bx-pencil bx-sm'></i></a>
+                          </td>";
+                    echo "<td>
+                            <a class='eliminar' href='../control/umedida/eliminar.php?id=" . $row['id_unidad_medida'] . "' onclick='return confirm(\"¿Está seguro de que desea eliminar esta unidad de medida?\");'><i class='bx bx-trash bx-sm'></i></a>
                           </td>";
                     echo "</tr>";
                 }
                 ?>
             </tbody>
         </table>
-        <div class="form-group">
-            <a href="unidadmedida.php">Volver a Ingreso de Unidad de Medida</a>
-        </div>
     </div>
 </body>
 

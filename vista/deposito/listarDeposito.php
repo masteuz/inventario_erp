@@ -49,7 +49,7 @@ try {
     <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script defer src="../../assets/js/SWALfunctions.js"></script>
-    <script defer src="../../assets/datatables/stocks.js"></script>
+    <script defer src="../../assets/datatables/deposito.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -78,21 +78,10 @@ try {
             margin-top: 20px;
         }
 
-        table,
-        th,
-        td {
-            border: 1px solid #ccc;
-        }
 
-        th,
-        td {
-            padding: 10px;
-            text-align: left;
-        }
 
         th {
             background-color: #007bff;
-            color: #ffffff;
         }
 
         tr:nth-child(even) {
@@ -144,23 +133,28 @@ try {
     <?php
     include_once '../../assets/header.php';
     ?>
-    <div class="container">
-        <h2>Listado de Depositos</h2>
-        <div class="add-button">
-            <a href="crearDeposito.php">Agregar Deposito</a>
-        </div>
-        <table>
-            <thead>
+    <div class="mt-2" style="width: 100%;">
+        <h1 class="ms-3">Depositos</h1>
+        <hr />
+    </div>
+    <div class="w-75 mt-5 mx-auto">
+        <a class="btn btn-secondary mb-3" href="crearDeposito.php">
+            <i class='bx bx-plus'></i> Agregar Deposito
+        </a>
+        <table id="deposito" class="table table-secondary table-hover">
+            <thead class="text-center">
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Descripción</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Estado</th>
                     <th>Encargado</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <?php foreach ($depositos as $deposito) : ?>
                     <tr>
                         <td><?php echo htmlspecialchars($deposito['id_deposito']); ?></td>
@@ -175,9 +169,11 @@ try {
                         ?>
                         <td><?php echo htmlspecialchars($result[0] . " " . $result[1]); ?></td>
 
-                        <td class="action-buttons">
-                            <a href="editarDeposito.php?id=<?php echo $deposito['id_deposito']; ?>" class="edit">Editar</a>
-                            <a href="../../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este depósito?');">Eliminar</a>
+                        <td>
+                            <a href="editarDeposito.php?id=<?php echo $deposito['id_deposito']; ?>" class="edit"><i class='bx bx-pencil bx-sm'></i></a>
+                        </td>
+                        <td>
+                            <a href="../../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este depósito?');"><i class='bx bx-trash bx-sm'></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

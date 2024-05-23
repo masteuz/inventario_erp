@@ -37,7 +37,7 @@ $conexion = $c->conectar();
     <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script defer src="../../assets/js/SWALfunctions.js"></script>
-    <script defer src="../../assets/datatables/stocks.js"></script>
+    <script defer src="../../assets/datatables/stock.js"></script>
 
 
     <title>Crear stock</title>
@@ -55,19 +55,20 @@ $conexion = $c->conectar();
     </div>
 
     <div class="w-75 mt-5 mx-auto">
+        <a class="btn btn-secondary mb-3" href="agregarStock.php">
+            <i class='bx bx-plus'></i> Agregar Productos al Stock
+        </a>
         <table id="stock" class="table table-secondary table-hover">
             <thead>
                 <tr>
-                    <th class="text-center">Id Stock</th>
+                    <th class="text-center">ID</th>
                     <th class="text-center">Producto</th>
                     <th class="text-center">Deposito</th>
                     <th class="text-center">Cantidad</th>
                     <th class="text-center">Stock minimo</th>
 
                     <th></th>
-                    <th><a href="agregarStock.php">
-                            Agregar
-                        </a></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -89,12 +90,12 @@ $conexion = $c->conectar();
                         <td><?php echo $resultado['stock_minimo'] ?></td>
                         <td>
                             <a href="editarStock.php?id_stock=<?php echo $resultado['id_stock'] ?>">
-                                Editar
+                                <i class='bx bx-pencil bx-sm'></i>
                             </a>
                         </td>
                         <td>
                             <a href="../../control/stock/eliminar.php?id_stock=<?php echo $resultado['id_stock'] ?>" onclick="return confirmarEliminacion(event)">
-                                Eliminar
+                                <i class='bx bx-trash bx-sm'></i>
                             </a>
                         </td>
                     </tr>

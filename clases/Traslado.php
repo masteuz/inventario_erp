@@ -6,102 +6,70 @@ class Traslado
         $c = new Conexion();
         $conexion = $c->conectar();
 
-        // Obtener y sanitizar los datos
-        $id_responsable = $c->test_input($datos['id_responsable']);
-        $id_deposito_origen = $c->test_input($datos['id_deposito_origen']);
-        $id_deposito_destino = $c->test_input($datos['id_deposito_destino']);
-        $productos = $datos['productos']; // Arreglo de productos a trasladar
+        // Obtener los datos individuales del arreglo
+        $fecha = $c->test_input($datos[0]);
+        $fecha_cierre = $c->test_input($datos[1]);
+        $estado = $c->test_input($datos[2]);
+        $id_producto = $c->test_input($datos[3]);
+        $cantidad = $c->test_input($datos[4]);
+        $id_deposito_origen = $c->test_input($datos[5]);
+        $id_deposito_destino = $c->test_input($datos[6]);
+        $id_encargado = $c->test_input($datos[7]);
+
+        // Verificar la cantidad disponible en el depósito de origen
+        $sql = "SELECT cantidad FROM stock WHERE id_producto = $id_producto AND id_deposito = $id_deposito_origen";
+        $result = mysqli_query($conexion, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $cantidad_origen = $row['cantidad'];
+
+        if ($cantidad_origen < $cantidad) {
+            return "Error: Cantidad insuficiente en el depósito de origen para el producto.";
+        }
 
         // Iniciar la transacción
-        $conexion->begin_transaction();
+        mysqli_begin_transaction($conexion);
 
         try {
-            // Crear un nuevo registro en la tabla traslado
-            $sql = "INSERT INTO traslado (fecha, estado, id_responsable, id_deposito_origen, id_deposito_destino) 
-            VALUES (NOW(), 'pendiente', ?, ?, ?)";
-            $stmt = $conexion->prepare($sql);
-            if ($stmt === false) {
-                throw new Exception("Error en la preparación de la consulta: " . $conexion->error);
+            // Registrar el producto en la tabla item_traslado
+            $sql = "INSERT INTO item_traslado (id_producto, cantidad) 
+                VALUES ($id_producto, $cantidad)";
+            $result = mysqli_query($conexion, $sql);
+            if (!$result) {
+                throw new Exception(mysqli_error($conexion));
             }
-            $stmt->bind_param("iii", $id_responsable, $id_deposito_origen, $id_deposito_destino);
-            $stmt->execute();
-            $id_traslado = $stmt->insert_id;
-            $stmt->close();
+            $id_item_traslado = mysqli_insert_id($conexion);
 
-            echo "id deposito origen $id_deposito_origen";
-            // Iterar sobre los productos para registrar en item_traslado y actualizar stock
-            foreach ($productos as $producto) {
+            // Registrar el traslado en la tabla traslado con el id del producto trasladado
+            $sql = "INSERT INTO traslado (fecha, fecha_cierre, estado, id_responsable, id_deposito_origen, id_deposito_destino, id_item_traslado) 
+                VALUES ('$fecha', '$fecha_cierre', '$estado', $id_encargado, $id_deposito_origen, $id_deposito_destino, $id_item_traslado)";
+            $result = mysqli_query($conexion, $sql);
+            if (!$result) {
+                throw new Exception(mysqli_error($conexion));
+            }
 
-                $id_producto = $c->test_input($producto['id_producto']);
-                $cantidad = $c->test_input($producto['cantidad']);
-                $id_deposito_origen = $producto['id_deposito_origen'];
-                $id_deposito_destino = $producto['id_deposito_destino'];
+            // Actualizar la cantidad en el depósito de origen
+            $sql = "UPDATE stock SET cantidad = cantidad - $cantidad WHERE id_producto = $id_producto AND id_deposito = $id_deposito_origen";
+            $result = mysqli_query($conexion, $sql);
+            if (!$result) {
+                throw new Exception(mysqli_error($conexion));
+            }
 
-                // Verificar la cantidad disponible en el depósito de origen
-                $sql = "SELECT cantidad FROM stock WHERE id_producto = ? AND id_deposito = ?";
-                $stmt = $conexion->prepare($sql);
-                if ($stmt === false) {
-                    throw new Exception("Error en la preparación de la consulta: " . $conexion->error);
-                }
-                $stmt->bind_param("ii", $id_producto, $id_deposito_origen);
-                $stmt->execute();
-                $stmt->bind_result($cantidad_origen);
-                $stmt->fetch();
-                $stmt->close();
-
-                // Depuración: Mostrar cantidad origen y cantidad solicitada
-                echo "Cantidad en depósito de origen para producto ID $id_producto: $cantidad_origen<br>";
-                echo "Cantidad solicitada: $cantidad<br>";
-
-                if ($cantidad_origen < $cantidad) {
-                    throw new Exception("Cantidad insuficiente en el depósito de origen para el producto ID $id_producto.");
-                }
-
-                // Restar la cantidad del depósito de origen
-                $sql = "UPDATE stock SET cantidad = cantidad - ? WHERE id_producto = ? AND id_deposito = ?";
-                $stmt = $conexion->prepare($sql);
-                if ($stmt === false) {
-                    throw new Exception("Error en la preparación de la consulta: " . $conexion->error);
-                }
-                $stmt->bind_param("iii", $cantidad, $id_producto, $id_deposito_origen);
-                $stmt->execute();
-                $stmt->close();
-
-                // Sumar la cantidad al depósito de destino
-                $sql = "INSERT INTO stock (id_producto, id_deposito, cantidad) VALUES (?, ?, ?) 
-                        ON DUPLICATE KEY UPDATE cantidad = cantidad + ?";
-                $stmt = $conexion->prepare($sql);
-                if ($stmt === false) {
-                    throw new Exception("Error en la preparación de la consulta: " . $conexion->error);
-                }
-                $stmt->bind_param("iiii", $id_producto, $id_deposito_destino, $cantidad, $cantidad);
-                $stmt->execute();
-                $stmt->close();
-
-                // Registrar el traslado en item_traslado
-                $sql = "INSERT INTO item_traslado (id_traslado, id_producto, cantidad) VALUES (?, ?, ?)";
-                $stmt = $conexion->prepare($sql);
-                if ($stmt === false) {
-                    throw new Exception("Error en la preparación de la consulta: " . $conexion->error);
-                }
-                $stmt->bind_param("iii", $id_traslado, $id_producto, $cantidad);
-                $stmt->execute();
-                $stmt->close();
+            // Actualizar la cantidad en el depósito de destino (si es necesario)
+            $sql = "INSERT INTO stock (id_producto, id_deposito, cantidad, stock_minimo) VALUES ( $id_producto, $id_deposito_destino, $cantidad, $cantidad) 
+                        ON DUPLICATE KEY UPDATE cantidad = cantidad + $cantidad";
+            $result = mysqli_query($conexion, $sql);
+            if (!$result) {
+                throw new Exception(mysqli_error($conexion));
             }
 
             // Confirmar la transacción
-            $conexion->commit();
+            mysqli_commit($conexion);
 
-            echo "Traslado realizado con éxito.";
-            return true;
+            return "Traslado realizado correctamente.";
         } catch (Exception $e) {
             // Revertir la transacción en caso de error
-            $conexion->rollback();
-            echo "Error en el traslado: " . $e->getMessage();
-            return false;
+            mysqli_rollback($conexion);
+            return "Error en el traslado: " . $e->getMessage();
         }
-
-        // Cerrar la conexión
-        $conexion->close();
     }
 }
