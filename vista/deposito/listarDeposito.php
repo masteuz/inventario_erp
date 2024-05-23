@@ -173,7 +173,7 @@ try {
                             <a href="editarDeposito.php?id=<?php echo $deposito['id_deposito']; ?>" class="edit"><i class='bx bx-pencil bx-sm'></i></a>
                         </td>
                         <td>
-                            <a href="../../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este depósito?');"><i class='bx bx-trash bx-sm'></i></a>
+                            <a href="../../control/deposito/eliminar.php?id_deposito=<?php echo $deposito['id_deposito']; ?>" class="delete" onclick="return confirmarEliminacion(event)"><i class='bx bx-trash bx-sm'></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -142,7 +142,7 @@ $conexion = $c->conectar();
                             <a class='editar' href='editar_unidadmedida.php?id=" . $row['id_unidad_medida'] . "'><i class='bx bx-pencil bx-sm'></i></a>
                           </td>";
                     echo "<td>
-                            <a class='eliminar' href='../control/umedida/eliminar.php?id=" . $row['id_unidad_medida'] . "' onclick='return confirm(\"¿Está seguro de que desea eliminar esta unidad de medida?\");'><i class='bx bx-trash bx-sm'></i></a>
+                            <a class='eliminar' href='../control/umedida/eliminar.php?id=" . $row['id_unidad_medida'] . "' onclick='return confirmarEliminacion(event)'><i class='bx bx-trash bx-sm'></i></a>
                           </td>";
                     echo "</tr>";
                 }
