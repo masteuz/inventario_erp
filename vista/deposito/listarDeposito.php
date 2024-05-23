@@ -180,6 +180,7 @@ try {
             </tbody>
         </table>
     </div>
+    <?php include("../../assets/footer.php"); ?>
 </body>
 
 </html>

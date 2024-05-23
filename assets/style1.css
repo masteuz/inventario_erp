@@ -23,7 +23,159 @@ table {
 .logo {
     width: 200px;
 }
+/* LAYOUT */
 
+.m-t{
+    margin-top: 10rem;
+}
+.m-l{
+    margin-left: 1rem;
+}
+.m-r{
+    margin-right: 1rem;
+}
+.m-b{
+    margin-bottom: 1rem;
+}
+.m-t-small{
+    margin-top: 1rem;
+}
+.m-l-small{
+    margin-left: 0.5rem;
+}
+.m-r-small{
+    margin-right: 0.5rem;
+}
+.m-b-small{
+    margin-bottom: 0.5rem;
+}
+
+.p-t{
+    padding-top: 1rem;
+}
+.p-l{
+    padding-left: 1rem;
+}
+.p-r{
+    padding-right: 1rem;
+}
+.p-b{
+    padding-bottom: 1rem;
+}
+.p-t-small{
+    padding-top: 0.5rem;
+}
+.p-l-small{
+    padding-left: 0.5rem;
+}
+.p-r-small{
+    padding-right: 0.5rem;
+}
+.p-b-small{
+    padding-bottom: 0.5rem;
+}
+.fila {
+    display: flex;
+    flex-direction: column; /*Asegura que los elementos se apilen verticalmente*/
+    padding: 2rem 1rem;
+    width: 100%;
+}
+
+.col-container {
+    display: flex; /*Nuevo contenedor flex para las columnas*/
+    flex-direction: row; /*Alineación horizontal de las columnas */
+    width: 100%; /* Ocupar el ancho completo */
+}
+.col-100 {
+    width: 100%;
+    padding: 0.5rem 1rem;
+}
+.col-75 {
+    width: 75%;
+    padding: 0.5rem 1rem;
+}
+.col-66 {
+    width: 66.6666%;
+    padding: 0.5rem 1rem;
+}
+.col-50 {
+    width: 50%;
+    padding: 0.5rem 1rem;
+}
+.col-33 {
+    width: 33.3333%;
+    padding: 0.5rem 1rem;
+
+}
+.col-25 {
+    width: 25%;
+    padding: 0.5rem 1rem;
+}
+
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.flex-column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-around{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+footer{
+    background-color: #000000;
+    height: min-content;
+}
+footer p{
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+}
+footer p:first-child{
+    color: #3b7918;
+    font-weight: bold;
+    text-align: center;
+}
+footer a{
+    font-size: 0.9em;
+    color: #ffffff;
+    font-weight: 500;
+    transition: 300ms ease-in-out all;
+}
+footer a:hover{
+    color: #2516c8;
+}
+footer .copyr{
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+h5.modal-title{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
 /*.preloader {
     background: rgba(0, 0, 0, 0.8) url(../img/loader.gif) no-repeat center center;
     background-size: 5%;

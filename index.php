@@ -41,7 +41,7 @@ if (isset($_GET['el'])) {
           <i class="bx bx-lock-alt"></i>
           <input type="password" id="password" name="password" placeholder="Contraseña" required>
         </div>
-        <div class="input-field">
+        <div class="input-field sub">
           <input class="submit-btn" type="submit" value="Entrar">
         </div>
       </form>

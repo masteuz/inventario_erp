@@ -102,6 +102,7 @@ $conexion = $c->conectar();
         </table>
         <br>
     </div>
+    <?php include("../../assets/footer.php"); ?>
 </body>
 
 </html>

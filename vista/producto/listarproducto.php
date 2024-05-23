@@ -151,7 +151,7 @@ $conexion = $c->conectar();
                     echo "<td>" . $row['porcentaje_iva'] . "</td>";
                     echo "<td>" . $row['id_categoria'] . "</td>";
                     echo "<td>" . $row['id_unidad_medida'] . "</td>";
-                    echo "<td><img src='../../foto_producto/" . $row['foto'] . "' alt='Imagen' width='100px'></td>";
+                    echo "<td><button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#imageModal' onclick='showImage(\"../../foto_producto/" . $row['foto'] . "\")'>VER</button></td>";
                     echo "<td>" . $row['observacion'] . "</td>";
                     echo "<td class=''>
                             <a class='editar' href='editarproducto.php?id=" . $row['id_producto'] . "'><i class='bx bx-pencil bx-sm'></i></a>
@@ -165,6 +165,26 @@ $conexion = $c->conectar();
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Imagen del Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" alt="Imagen del Producto" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include("../../assets/footer.php"); ?>
+<script>
+    function showImage(src) {
+        document.getElementById('modalImage').src = src;
+    }
+</script>
 </body>
 
 </html>
