@@ -160,7 +160,7 @@ $conexion = $c->conectar();
                             <a class='editar' href='editarproducto.php?id=" . $row['id_producto'] . "'><i class='bx bx-pencil bx-sm'></i></a>
                           </td>";
                     echo "<td class=''>
-                            <a class='eliminar' href='../../control/producto/eliminar.php?id=" . $row['id_producto'] . "' onclick='return confirm(\"¿Está seguro de que desea eliminar este Producto?\");'><i class='bx bx-trash bx-sm'></i></a>
+                            <a class='eliminar' href='../../control/producto/eliminar.php?id=" . $row['id_producto'] . "' onclick='return confirmarEliminacion(event)'><i class='bx bx-trash bx-sm'></i></a>
                           </td>";
                     echo "</tr>";
                 }
@@ -183,11 +183,11 @@ $conexion = $c->conectar();
     </div>
 
     <?php include("../../assets/footer.php"); ?>
-<script>
-    function showImage(src) {
-        document.getElementById('modalImage').src = src;
-    }
-</script>
+    <script>
+        function showImage(src) {
+            document.getElementById('modalImage').src = src;
+        }
+    </script>
 </body>
 
 </html>

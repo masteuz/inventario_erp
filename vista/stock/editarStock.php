@@ -30,7 +30,7 @@ while ($resultado = $sql->fetch_assoc()) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Formulario para editar Categoría</title>
+        <title>Formulario para editar Stock</title>
         <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
@@ -111,7 +111,7 @@ while ($resultado = $sql->fetch_assoc()) {
         ?>
         </div>
         <div class="container">
-            <h2>Editar de Categoría</h2>
+            <h2>Editar de Stock</h2>
             <form action="../../control/stock/editar.php" method="post">
 
                 <input type="hidden" name="id_stock" value="<?php echo $id_stock ?>">
@@ -178,7 +178,7 @@ while ($resultado = $sql->fetch_assoc()) {
                     <input type="text" id="stockmin" name="stockmin" value="<?php echo $stockmin ?>" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit">Agregar Stock</button>
+                    <button type="submit">Actualizar Stock</button>
                 </div>
             </form>
         </div>
