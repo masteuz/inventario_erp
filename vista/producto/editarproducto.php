@@ -116,7 +116,7 @@ $row = mysqli_fetch_assoc($result);
     ?>
     <div class="container">
         <h2>Editar Producto</h2>
-        <form action="../control/producto/editar.php" method="post">
+        <form action="../../control/producto/editar.php" enctype="multipart/form-data" method="post">
             <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
@@ -124,51 +124,72 @@ $row = mysqli_fetch_assoc($result);
             </div>
             <div class="form-group">
                 <label for="codigo_barra">Codigo de barras</label>
-                <input type="number" id="barras" name="barras" value="<?php echo $row['barras']; ?>" required>
+                <input type="number" id="barras" name="barras" value="<?php echo $row['codigo_barra']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="precio_compra">Precio de Compra</label>
-                <input type="number" id="compra" name="compra" value="<?php echo $row['compra']; ?>" required>
+                <input type="number" id="compra" name="compra" value="<?php echo $row['precio_compra']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="precio_venta_minimo">Precio de Venta Minimo</label>
-                <input type="number" id="minimo" name="minimo" value="<?php echo $row['minimo']; ?>" required>
+                <input type="number" id="minimo" name="minimo" value="<?php echo $row['precio_venta_minimo']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="precio_venta_maximo">Precio de Venta Maximo</label>
-                <input type="number" id="maximo" name="maximo" value="<?php echo $row['maximo']; ?>" required>
+                <input type="number" id="maximo" name="maximo" value="<?php echo $row['precio_venta_maximo']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="porcentaje_iva">Porcentaje de IVA</label>
-                <input type="number" id="iva" name="iva" value="<?php echo $row['iva']; ?>" required>
+                <input type="number" id="iva" name="iva" value="<?php echo $row['porcentaje_iva']; ?>" required>
             </div>
             <div class="mb-3">
-                <label class="form-label">categoria</label>
-                <select class="form-select" name="categoria">
-                    <option selected disabled>-- Seleccionar categoria --</option>
+                <label class="form-label">Categoria</label>
+                <select class="form-select" name="id_categoria">
                     <?php
 
+                    $sql_categ = $conexion->query("Select * from categoria");
 
-                    $sql = $conexion->query("Select * from categoria");
+                    while ($resultado_categ = $sql_categ->fetch_assoc()) {
 
-                    while ($resultado = $sql->fetch_assoc()) {
-                        echo "<option value='" . $resultado['id_categoria'] . "'>" . $resultado['descripcion'] . " </option>";
+                        $id_categ = $resultado_categ['id_categoria'];
+                        $categ = $resultado_categ['descripcion'];
+
+                        if ($id_categ == $row['id_categoria']) { ?>
+
+                            <option value="<?php echo $id_categ ?>" selected><?php echo $categ ?></option>
+
+                        <?php
+                        } else { ?>
+                            <option value="<?php echo $id_categ ?>"><?php echo $categ ?></option>
+                    <?php
+                        }
                     }
 
                     ?>
                 </select>
             </div>
+
             <div class="mb-3">
-                <label class="form-label">unidad de medida</label>
+                <label class="form-label">Unidad de medida:</label>
                 <select class="form-select" name="id_unidad_medida">
-                    <option selected disabled>-- Seleccionar unidad de medida --</option>
                     <?php
 
+                    $sql_unidad = $conexion->query("Select * from unidad_de_medida");
 
-                    $sql = $conexion->query("Select * from unidad_de_medida");
+                    while ($resultado_unidad = $sql_unidad->fetch_assoc()) {
 
-                    while ($resultado = $sql->fetch_assoc()) {
-                        echo "<option value='" . $resultado['id_unidad_medida'] . "'>" . $resultado['descripcion'] . " </option>";
+                        $id_unidad = $resultado_unidad['id_unidad_medida'];
+                        $unidad = $resultado_unidad['descripcion'];
+
+                        if ($id_unidad == $row['id_unidad_medida']) { ?>
+
+                            <option value="<?php echo $id_unidad ?>" selected><?php echo $unidad ?></option>
+
+                        <?php
+                        } else { ?>
+                            <option value="<?php echo $id_unidad ?>"><?php echo $unidad ?></option>
+                    <?php
+                        }
                     }
 
                     ?>
@@ -176,7 +197,7 @@ $row = mysqli_fetch_assoc($result);
             </div>
             <div class="mb-3">
                 <label class="form-label">Foto:</label>
-                <input class="form-control" type="file" name="foto" required><br>
+                <input class="form-control" type="file" name="foto"><br>
             </div>
             <div class="form-group">
                 <label for="observacion">Observacion</label>

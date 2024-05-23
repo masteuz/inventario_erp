@@ -35,12 +35,19 @@ class Producto
         $precio_venta_maximo = $c->test_input($datos[5]);
         $porcentaje_iva = $c->test_input($datos[6]);
         $id_categoria = $c->test_input($datos[7]);
-        $id_unidad_medida = $c->test_input($datos[]);
+        $id_unidad_medida = $c->test_input($datos[8]);
         $foto = $c->test_input($datos[9]);
         $observacion = $c->test_input($datos[10]);
 
-        $sql = "UPDATE unidad_de_medida SET descripcion='$descripcion', codigo_barra='$codigo_barra', precio_compra='$precio_compra', precio_venta_minimo='$precio_venta_minimo', precio_venta_maximo='$precio_venta_maximo', porcentaje_iva='$porcentaje_iva', id_categoria='$id_categoria', id_unidad_medida='$id_unidad_medida', foto='$foto', observacion='$observacion' WHERE id_producto='$id'";
+        if ($foto == null) {
+            $sql = "UPDATE producto SET descripcion='$descripcion', codigo_barra='$codigo_barra', precio_compra='$precio_compra', precio_venta_minimo='$precio_venta_minimo', precio_venta_maximo='$precio_venta_maximo', porcentaje_iva='$porcentaje_iva', id_categoria='$id_categoria', id_unidad_medida='$id_unidad_medida', observacion='$observacion' WHERE id_producto='$id'";
+        } else {
+            $sql = "UPDATE producto SET descripcion='$descripcion', codigo_barra='$codigo_barra', precio_compra='$precio_compra', precio_venta_minimo='$precio_venta_minimo', precio_venta_maximo='$precio_venta_maximo', porcentaje_iva='$porcentaje_iva', id_categoria='$id_categoria', id_unidad_medida='$id_unidad_medida', foto='$foto', observacion='$observacion' WHERE id_producto='$id'";
+        }
+
+        echo $sql;
         $result = mysqli_query($conexion, $sql);
+        echo $result;
         return $result;
     }
 
