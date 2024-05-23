@@ -152,15 +152,9 @@ $conexion = $c->conectar();
                     echo "<td>" . $row['precio_venta_minimo'] . "</td>";
                     echo "<td>" . $row['precio_venta_maximo'] . "</td>";
                     echo "<td>" . $row['porcentaje_iva'] . "</td>";
-<<<<<<< HEAD
-                    echo "<td>" . $row['id_categoria'] . "</td>";
-                    echo "<td>" . $row['id_unidad_medida'] . "</td>";
-                    echo "<td><button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#imageModal' onclick='showImage(\"../../foto_producto/" . $row['foto'] . "\")'>VER</button></td>";
-=======
                     echo "<td>" . $row['categoria_descripcion'] . "</td>";
                     echo "<td>" . $row['unidad_descripcion'] . "</td>";
-                    echo "<td><img src='../../foto_producto/" . $row['foto'] . "' alt='Imagen' width='100px'></td>";
->>>>>>> 966e37e9e4d450b6d6ec4df766a2126bca88cb22
+                    echo "<td><button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#imageModal' onclick='showImage(\"../../foto_producto/" . $row['foto'] . "\")'>VER</button></td>";
                     echo "<td>" . $row['observacion'] . "</td>";
                     echo "<td class=''>
                             <a class='editar' href='editarproducto.php?id=" . $row['id_producto'] . "'><i class='bx bx-pencil bx-sm'></i></a>
