@@ -137,7 +137,10 @@ $conexion = $c->conectar();
             </thead>
             <tbody class="text-center">
                 <?php
-                $sql = "SELECT * FROM producto";
+                $sql = "SELECT p.id_producto, p.descripcion, p.codigo_barra, p.precio_compra, p.precio_venta_minimo, p.precio_venta_maximo, p.porcentaje_iva, c.descripcion AS categoria_descripcion, u.descripcion as unidad_descripcion, p.foto, p.observacion
+                from producto p
+                INNER JOIN categoria c ON c.id_categoria = p.id_categoria
+                INNER JOIN unidad_de_medida u ON u.id_unidad_medida = p.id_unidad_medida;";
                 $result = mysqli_query($conexion, $sql);
 
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -149,9 +152,15 @@ $conexion = $c->conectar();
                     echo "<td>" . $row['precio_venta_minimo'] . "</td>";
                     echo "<td>" . $row['precio_venta_maximo'] . "</td>";
                     echo "<td>" . $row['porcentaje_iva'] . "</td>";
+<<<<<<< HEAD
                     echo "<td>" . $row['id_categoria'] . "</td>";
                     echo "<td>" . $row['id_unidad_medida'] . "</td>";
                     echo "<td><button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#imageModal' onclick='showImage(\"../../foto_producto/" . $row['foto'] . "\")'>VER</button></td>";
+=======
+                    echo "<td>" . $row['categoria_descripcion'] . "</td>";
+                    echo "<td>" . $row['unidad_descripcion'] . "</td>";
+                    echo "<td><img src='../../foto_producto/" . $row['foto'] . "' alt='Imagen' width='100px'></td>";
+>>>>>>> 966e37e9e4d450b6d6ec4df766a2126bca88cb22
                     echo "<td>" . $row['observacion'] . "</td>";
                     echo "<td class=''>
                             <a class='editar' href='editarproducto.php?id=" . $row['id_producto'] . "'><i class='bx bx-pencil bx-sm'></i></a>
